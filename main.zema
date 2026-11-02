@@ -1,0 +1,29 @@
+export function main() {
+  let game = new Game(3, 4);
+  console.log(game.toString())
+}
+
+export class GameCell {
+    value: String = "foo";
+}
+
+export class Game/*<ClickType, CellState, ReturnValue>*/ {
+     var #board: FixedArray<FixedArray<GameCell>>;
+
+    new(w: i32, h: i32):
+      #board = new FixedArray(w, new FixedArray(h,new GameCell())) 
+      {}
+
+    toString(): String {
+       var output: String = "";
+       for (let row in this.#board) {
+         var rowString = "";
+         for (let col in row){
+           rowString += col.value + " ";
+         }
+         rowString += "\n";
+         output += rowString;
+       }
+       return output;
+    }
+}
